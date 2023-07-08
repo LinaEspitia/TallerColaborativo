@@ -75,7 +75,81 @@ int productPoint() {
 
 }
 
-int NumerosEgolatras(int n){
+int multiplicacionMatriz() {
+    int a[15][15], b[15][15], c[15][15];
+    int f1, f2, c1, c2;
+
+    int cont, aux;
+    printf("\n El numero de filas de la primera matriz debe coincidir con el numero de columnas de la segunda matriz \n");
+    printf("\nPor favor agregue el numero de filas de la matriz 1 \n");
+    scanf("%d", &f1);
+
+    printf("Por favor agregue el numero de columnas de la matriz 1 \n");
+    scanf("%d", &c1);
+
+    printf("Por favor agregue el numero de filas de la matriz 2 \n ");
+    scanf("%d", &f2);
+
+    printf("Por favor agregue el numero de columnas de la matriz 2 \n");
+    scanf("%d", &c2);
+
+
+    if (f1 == c2) {
+
+        for (int i = 0; i < f1; ++i) {
+            for (int j = 0; j < c1; ++j) {
+                a[i][j] = rand() % 9 + 1;
+            }
+        }
+
+        for (int i = 0; i < f2; ++i) {
+            for (int j = 0; j < c2; ++j) {
+                b[i][j] = rand() % 9 + 1;
+            }
+        }
+
+        for (int i = 0; i < f1; ++i) {
+            for (int j = 0; j < c1; ++j) {
+                for (cont = 0, aux = 0; cont < c1; ++cont) {
+                    aux = aux + a[i][cont] * b[cont][j];
+                }
+                c[i][j] = aux;
+            }
+        }
+
+        printf("\nPrimer matriz:");
+        for (int i = 0; i < f1; ++i) {
+            printf("\n");
+            for (int j = 0; j < c1; ++j) {
+                printf("\t%d", a[i][j]);
+            }
+        }
+
+        printf("\n Segunda matriz:");
+        for (int i = 0; i < f2; ++i) {
+            printf("\n");
+            for (int j = 0; j < c2; ++j) {
+                printf("\t%d", b[i][j]);
+            }
+        }
+
+        printf("\n Multiplicacion de matriz:\n");
+        for (int i = 0; i < f1; ++i) {
+            printf("\n");
+            for (int j = 0; j < c2; ++j) {
+                printf("\t%d", c[i][j]);
+            }
+        }
+    } else {
+        printf("Null \n");
+
+    }
+}
+
+
+
+
+int numerosEgolatras(int n){
     int numeroDigitos = floor(log10(n)+1);
     char cadena [numeroDigitos + 1];
 
@@ -139,7 +213,7 @@ int main() {
                 printf("Por favor ingrese el numero \n ");
                 int num ;
                 scanf("%d", &num);
-                printf("El numero %d %s",num, NumerosEgolatras( num)?"es egolatra\n":"No es egolatra\n");
+                printf("El numero %d %s",num, numerosEgolatras( num)?"es egolatra\n":"No es egolatra\n");
                 break;
             case 5:
                 printf(".......Numero Magico.......\n");
@@ -153,6 +227,8 @@ int main() {
                 break;
             case 8:
                 printf(".......Multiplicacion de Matrices.......\n");
+                multiplicacionMatriz();
+                printf("\n");
                 break;
             case 9:
                 printf(".......Matriz Magica.......\n");
