@@ -54,7 +54,69 @@ void imprimirMatriz(int matriz[N][N]) {
 }
 
 
+//Factores Primos
+void factoresPrimos(int numero) {
+    int i;
+    int potencia;
+    int factores[100];  // Array para almacenar los factores primos
+    int exponentes[100];  // Array para almacenar los exponentes de los factores primos
+    int num_factors = 0;  // Número de factores primos encontrados hasta ahora
 
+    // For para buscar el numero de factores primos del numero ingresado
+    for (i = 2; i <= sqrt(numero); i++) {
+        potencia = 0;
+        while (numero % i == 0) {
+            potencia++;
+            numero /= i;
+        }
+        if (potencia > 0) {
+            factores[num_factors] = i;
+            exponentes[num_factors] = potencia;
+            num_factors++;
+        }
+    }
+
+    // If n is a prime number greater than 2
+    if (numero > 2) {
+        factores[num_factors] = numero;
+        exponentes[num_factors] = 1;
+        num_factors++;
+    }
+
+    // Ordena los factores primos de mayor a menor
+    for (i = 0; i < num_factors - 1; i++) {
+        for (int j = i + 1; j < num_factors; j++) {
+            if (factores[i] < factores[j]) {
+                int temp = factores[i];
+                factores[i] = factores[j];
+                factores[j] = temp;
+                temp = exponentes[i];
+                exponentes[i] = exponentes[j];
+                exponentes[j] = temp;
+            }
+        }
+    }
+
+    // Imprime la factorización de primos en formato potencia
+    for (i = 0; i < num_factors; i++) {
+        printf("%d^%d ", factores[i], exponentes[i]);
+    }
+    printf("\n");
+}
+
+int aux_factoresPrimos() {
+
+    int n;
+    //Le pedimos al usuario que ingrese un numero
+    printf("Ingrese un numero... : ");
+    //capturamos el numero ingresado
+    scanf("%d", &n);
+    printf("la descomposicion del numero en potencias de sus factores primos %d es: ", n);
+    factoresPrimos(n);
+
+    return 0;
+
+}
 
 
 
@@ -332,6 +394,85 @@ void *menu (){
             fflush(stdin);
 }
 
+void Date (char date[10]) {
+
+
+    if (date[2] == '/' && date[5] == '/'&& date[9] !=
+                                           '\0'&& date[8] !=
+                                                  '\0'&&date[7] !=
+                                                        '\0'&&date[6] !=
+                                                              '\0') {
+        char mes;
+        char dia1=date[0];
+        char dia2=date[1];
+        char mes1=date[3];
+        char mes2=date[4];
+        char año1=date[6];
+        char año2=date[7];
+        char año3=date[8];
+        char año4=date[9];
+
+
+        if ( dia1=='0' || dia1=='1' ||dia1=='2'  ) {
+
+            if(mes1=='0' && mes2=='1'){
+                printf("%c%c de Enero de %c%c%c%c",dia1,dia2,año1,año2,año3,año4);
+            }else if(mes1=='0' && mes2=='2'){
+                printf("%c%c de Febrero de %c%c%c%c",dia1,dia2,año1,año2,año3,año4);
+            }
+            else if(mes1=='0' && mes2=='3'){
+                printf("%c%c de Marzo de %c%c%c%c",dia1,dia2,año1,año2,año3,año4);
+            }
+            else if(mes1=='0' && mes2=='4'){
+                printf("%c%c de Abril de %c%c%c%c",dia1,dia2,año1,año2,año3,año4);
+            }
+            else if(mes1=='0' && mes2=='5'){
+                printf("%c%c de Mayo de %c%c%c%c",dia1,dia2,año1,año2,año3,año4);
+            }
+            else if(mes1=='0' && mes2=='6'){
+                printf("%c%c de Junio de %c%c%c%c",dia1,dia2,año1,año2,año3,año4);
+            }
+            else if(mes1=='0' && mes2=='7'){
+                printf("%c%c de Julio de %c%c%c%c",dia1,dia2,año1,año2,año3,año4);
+            }
+            else if(mes1=='0' && mes2=='7'){
+                printf("%c%c de Julio de %c%c%c%c",dia1,dia2,año1,año2,año3,año4);
+            }
+            else if(mes1=='0' && mes2=='7'){
+                printf("%c%c de Julio de %c%c%c%c",dia1,dia2,año1,año2,año3,año4);
+            }
+            else if(mes1=='0' && mes2=='8'){
+                printf("%c%c de Agosto de %c%c%c%c",dia1,dia2,año1,año2,año3,año4);
+            }
+            else if(mes1=='0' && mes2=='9'){
+                printf("%c%c de Septiembre de %c%c%c%c",dia1,dia2,año1,año2,año3,año4);
+            }
+            else if(mes1=='1' && mes2=='0'){
+                printf("%c%c de Octubre de %c%c%c%c",dia1,dia2,año1,año2,año3,año4);
+            } else if(mes1=='1' && mes2=='1'){
+                printf("%c%c de Noviembre de %c%c%c%c",dia1,dia2,año1,año2,año3,año4);
+            }
+            else if(mes1=='1' && mes2=='2'){
+                printf("%c%c de Diciembre de %c%c%c%c",dia1,dia2,año1,año2,año3,año4);
+            }
+
+            else {
+                printf("El mes no es valido");
+            }
+
+
+        } else {
+            printf("El dia no es valido");
+        }
+    }
+    else{
+        printf("La fecha  no es correcta por favor ingresera con el formato=01/12/2022");
+    }
+
+
+
+}
+
 int main() {
     do {
         menu();
@@ -346,6 +487,7 @@ int main() {
                 break;
             case 2:
                 printf(".......Factores Primos.......\n");
+                aux_factoresPrimos();
                 break;
             case 3:
                 printf(".......Borrar Espacios.......\n");
@@ -368,6 +510,10 @@ int main() {
                 break;
             case 6:
                 printf(".......Fechas.......\n");
+                printf("Ingrese la fecha de la siguiente forma 02/12/2022 \n ");
+                char date[10];
+                scanf("%s", &date);
+                Date(date);
                 break;
             case 7:
                 printf(".......Producto Punto.......\n");
