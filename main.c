@@ -3,6 +3,60 @@
 #include <string.h>
 #include <ctype.h>
 #include <math.h>
+#define N 3 // Tamaño de la matriz (3x3)
+
+void generarMatrizMagica(int matriz[N][N]) {
+    int i, j;
+    int contador = 1;
+
+    // Inicializar la matriz con ceros
+    for (i = 0; i < N; i++) {
+        for (j = 0; j < N; j++) {
+            matriz[i][j] = 0;
+        }
+    }
+
+    // Colocar los números en la matriz
+    i = 0;
+    j = N / 2;
+    while (contador <= N * N) {
+        matriz[i][j] = contador;
+        contador++;
+
+        i--;
+        j++;
+        if (i < 0 && j == N) {
+            i = 1;
+            j = N - 1;
+        }
+        else if (i < 0) {
+            i = N - 1;
+        }
+        else if (j == N) {
+            j = 0;
+        }
+        else if (matriz[i][j] != 0) {
+            i = i + 2;
+            j = j - 1;
+        }
+    }
+}
+
+void imprimirMatriz(int matriz[N][N]) {
+    int i, j;
+    for (i = 0; i < N; i++) {
+        for (j = 0; j < N; j++) {
+            printf("%d\t", matriz[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n"); // Agregar un salto de línea adicional al final
+}
+
+
+
+
+
 
 
 int NumeroMagico(int number){
@@ -326,6 +380,32 @@ int main() {
                 break;
             case 9:
                 printf(".......Matriz Magica.......\n");
+                int matriz[N][N];
+                int i, j;
+
+                printf("Ingrese los numeros para la matriz magica:\n");
+
+                // Solicitar al usuario los numeros para la matriz
+                for (i = 0; i < N; i++) {
+                    for (j = 0; j < N; j++) {
+                        printf("Ingrese el numero en la posicion [%d][%d]: ", i, j);
+                        scanf("%d", &matriz[i][j]);
+                    }
+                }
+
+                printf("\nMatriz ingresada:\n");
+                imprimirMatriz(matriz);
+
+                printf("\nGenerando matriz magica...\n\n");
+
+                generarMatrizMagica(matriz);
+
+                printf("Matriz magica generada:\n");
+                imprimirMatriz(matriz);
+
+
+
+
                 break;
             default:
                 printf("\n\n Opcion digitada incorrecta\n\n\n");
