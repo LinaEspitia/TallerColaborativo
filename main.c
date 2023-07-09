@@ -4,6 +4,8 @@
 #include <ctype.h>
 #include <math.h>
 
+
+
 void deleteSpace(char *text) {
     int i = 0, j = 0;
     int len = strlen(text);
@@ -45,7 +47,7 @@ int productPoint() {
     printf("\nIngrese la longitud del vector 1\n");
     scanf("%d", &lenOne);
 
-    printf("\nIngrese la longitud del vector 2\n");
+    printf("\nIngrese la longitud del vector 2-----\n");
     scanf("%d", &lenTwo);
 
 
